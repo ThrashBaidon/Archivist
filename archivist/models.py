@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 '''
@@ -24,3 +25,13 @@ y 2019
         ➢ Informes Técnicos
         ➢ Obras artísticas:
 '''
+
+class ProofArchive(models.Model):
+    user = models.OneToOneField("auth.User", on_delete=models.CASCADE, primary_key=True)
+    ptc_proof = models.FileField(upload_to='proofs', null=True)
+    graduate_proof = models.FileField(upload_to='proofs', null=True)
+    teaching_proof = models.FileField(upload_to='proofs', null=True)
+    knowledge_proof = models.FileField(upload_to='proofs', null=True)
+
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'pk':self.pk})

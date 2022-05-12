@@ -1,1 +1,12 @@
-Bienvenido al archivista, aquí puedes ayudarte a revisar tus documentos de prodep
+{% extends 'base/base.html' %}
+
+{% block content %}
+<p>Bienvenido al archivista, aquí puedes ayudarte a revisar tus documentos de prodep</p>
+
+  {% comment %} {% if not user.proofarchive %}
+    <p>parece que no tienes archivos arriba, súbelos para crear un registro</p><a href="{%url 'create' %}"><button>vamos</button></a>
+  {% else %}
+  {% endif %} {% endcomment %}
+  <p>sube otros archivos</p><a href="{%url 'update' pk=user.pk%}"><button>vamos</button></a>
+
+{% endblock content %}
