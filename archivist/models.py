@@ -33,5 +33,14 @@ class ProofArchive(models.Model):
     teaching_proof = models.FileField(upload_to='proofs', null=True)
     knowledge_proof = models.FileField(upload_to='proofs', null=True)
 
+    @property
+    def status(self):
+        if self.ptc_proof and self.graduate_proof and self.teaching_proof and self.knowledge_proof:
+            return True
+        else:
+            return False
+
     def get_absolute_url(self):
         return reverse('detail', kwargs={'pk':self.pk})
+    
+    
